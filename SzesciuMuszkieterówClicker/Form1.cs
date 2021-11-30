@@ -20,10 +20,7 @@ namespace SzesciuMuszkieterówClicker
 
         private void button1_Click(object sender, EventArgs e)
         {
-            graj.Visible = false;
-            atakS.Visible = true;
-            bossBar.Visible = true;
-            TosiekBoss.Visible = true;
+            LayoutPanelMain.Visible = true;
 
         }
 
@@ -37,10 +34,11 @@ namespace SzesciuMuszkieterówClicker
             }
             else
             {
-                TosiekBoss.Image = Resources.Tosiek_BossDead;
+                ImagineBoss.Image = Resources.Tosiek_BossDead;
                 bossBar.Value = 0;
             }
         }
+
 
     }
 }
