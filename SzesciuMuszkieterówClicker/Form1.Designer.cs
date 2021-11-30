@@ -35,7 +35,6 @@ namespace SzesciuMuszkieterówClicker
             this.graj = new System.Windows.Forms.Button();
             this.buttonAtak1 = new System.Windows.Forms.Button();
             this.bossBar = new System.Windows.Forms.ProgressBar();
-            this.ImagineBoss = new System.Windows.Forms.PictureBox();
             this.labelBossName = new System.Windows.Forms.Label();
             this.LayoutPanelMain = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
@@ -48,15 +47,22 @@ namespace SzesciuMuszkieterówClicker
             this.progressBarTwojeHP = new System.Windows.Forms.ProgressBar();
             this.labelTwojeHP = new System.Windows.Forms.Label();
             this.labelBoss = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.ImagineBoss)).BeginInit();
+            this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
+            this.directorySearcher2 = new System.DirectoryServices.DirectorySearcher();
+            this.directorySearcher3 = new System.DirectoryServices.DirectorySearcher();
+            this.ImagineBoss = new System.Windows.Forms.PictureBox();
             this.LayoutPanelMain.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.LayoutPanelAtak.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ImagineBoss)).BeginInit();
             this.SuspendLayout();
             // 
             // graj
             // 
+            this.graj.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.graj.Location = new System.Drawing.Point(318, 421);
             this.graj.Margin = new System.Windows.Forms.Padding(2);
             this.graj.Name = "graj";
@@ -80,28 +86,14 @@ namespace SzesciuMuszkieterówClicker
             // bossBar
             // 
             this.bossBar.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.bossBar.ForeColor = System.Drawing.Color.Black;
+            this.bossBar.ForeColor = System.Drawing.Color.Silver;
             this.bossBar.Location = new System.Drawing.Point(2, 31);
             this.bossBar.Margin = new System.Windows.Forms.Padding(2);
             this.bossBar.Name = "bossBar";
             this.bossBar.Size = new System.Drawing.Size(738, 52);
             this.bossBar.Step = 1;
-            this.bossBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.bossBar.TabIndex = 2;
             this.bossBar.Value = 100;
-            // 
-            // ImagineBoss
-            // 
-            this.ImagineBoss.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.ImagineBoss.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ImagineBoss.BackgroundImage")));
-            this.ImagineBoss.Image = global::SzesciuMuszkieterówClicker.Properties.Resources.Tosiek_Boss;
-            this.ImagineBoss.Location = new System.Drawing.Point(257, 2);
-            this.ImagineBoss.Margin = new System.Windows.Forms.Padding(2);
-            this.ImagineBoss.Name = "ImagineBoss";
-            this.ImagineBoss.Size = new System.Drawing.Size(244, 310);
-            this.ImagineBoss.TabIndex = 3;
-            this.ImagineBoss.TabStop = false;
-            this.ImagineBoss.WaitOnLoad = true;
             // 
             // labelBossName
             // 
@@ -116,10 +108,12 @@ namespace SzesciuMuszkieterówClicker
             // 
             // LayoutPanelMain
             // 
+            this.LayoutPanelMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LayoutPanelMain.Controls.Add(this.labelBossName);
             this.LayoutPanelMain.Controls.Add(this.bossBar);
             this.LayoutPanelMain.Controls.Add(this.flowLayoutPanel2);
-            this.LayoutPanelMain.Location = new System.Drawing.Point(1, -2);
+            this.LayoutPanelMain.Location = new System.Drawing.Point(2, -2);
             this.LayoutPanelMain.Name = "LayoutPanelMain";
             this.LayoutPanelMain.Size = new System.Drawing.Size(750, 418);
             this.LayoutPanelMain.TabIndex = 5;
@@ -234,23 +228,58 @@ namespace SzesciuMuszkieterówClicker
             this.labelBoss.TabIndex = 2;
             this.labelBoss.Text = "Antek : Nie pokonasz mnie muhahaha";
             // 
+            // directorySearcher1
+            // 
+            this.directorySearcher1.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
+            this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
+            this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
+            // 
+            // directorySearcher2
+            // 
+            this.directorySearcher2.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
+            this.directorySearcher2.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
+            this.directorySearcher2.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
+            // 
+            // directorySearcher3
+            // 
+            this.directorySearcher3.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
+            this.directorySearcher3.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
+            this.directorySearcher3.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
+            // 
+            // ImagineBoss
+            // 
+            this.ImagineBoss.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ImagineBoss.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ImagineBoss.BackgroundImage")));
+            this.ImagineBoss.Image = global::SzesciuMuszkieterówClicker.Properties.Resources.Tosiek_Boss;
+            this.ImagineBoss.Location = new System.Drawing.Point(257, 2);
+            this.ImagineBoss.Margin = new System.Windows.Forms.Padding(2);
+            this.ImagineBoss.Name = "ImagineBoss";
+            this.ImagineBoss.Size = new System.Drawing.Size(244, 310);
+            this.ImagineBoss.TabIndex = 3;
+            this.ImagineBoss.TabStop = false;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(752, 479);
             this.Controls.Add(this.LayoutPanelMain);
             this.Controls.Add(this.graj);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
+            this.Opacity = 0.5D;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.ImagineBoss)).EndInit();
+            this.Shown += new System.EventHandler(this.Form1_Shown);
             this.LayoutPanelMain.ResumeLayout(false);
             this.LayoutPanelMain.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.LayoutPanelAtak.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ImagineBoss)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -273,6 +302,9 @@ namespace SzesciuMuszkieterówClicker
         private ProgressBar progressBarTwojeHP;
         private Label labelTwojeHP;
         private Label labelBoss;
+        private System.DirectoryServices.DirectorySearcher directorySearcher1;
+        private System.DirectoryServices.DirectorySearcher directorySearcher2;
+        private System.DirectoryServices.DirectorySearcher directorySearcher3;
     }
 }
 
